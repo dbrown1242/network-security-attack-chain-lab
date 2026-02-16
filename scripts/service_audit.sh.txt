@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# ==========================================
+# Local Service Exposure Audit
+# ==========================================
+
+echo "[+] Checking running services..."
+systemctl list-units --type=service --state=running
+
+echo ""
+echo "[+] Checking open TCP ports..."
+ss -tuln | grep LISTEN
+
+echo ""
+echo "[+] Checking FTP service status..."
+systemctl status vsftpd 2>/dev/null

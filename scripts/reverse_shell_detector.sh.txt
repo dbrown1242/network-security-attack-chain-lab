@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# ==========================================
+# Suspicious Outbound Connection Detector
+# ==========================================
+
+echo "[+] Checking for suspicious outbound connections..."
+
+ss -antp | grep ESTAB | while read line
+do
+    echo "$line"
+done

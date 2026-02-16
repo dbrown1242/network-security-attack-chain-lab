@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# ==========================================
+# Network Interface Audit Script
+# ==========================================
+
+echo "========== Interface Information =========="
+ip addr show
+
+echo ""
+echo "========== Routing Table =========="
+ip route show
+
+echo ""
+echo "========== Active Listening Ports =========="
+ss -tulnp
+
+echo ""
+echo "========== Default Gateway =========="
+ip route | grep default

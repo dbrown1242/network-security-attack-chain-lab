@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# ==========================================
+# Network Reconnaissance Script
+# Author: Dominique Brown
+# Description:
+# Performs full TCP scan, service detection,
+# OS fingerprinting, and saves results to file.
+# ==========================================
+
+TARGET=$1
+OUTPUT_DIR="scan_results"
+DATE=$(date +"%Y-%m-%d_%H-%M-%S")
+
+if [ -z "$TARGET" ]; then
+    echo "Usage: ./network_scan.sh <target_ip>"
+    exit 1
+fi
+
+mkdir -p $OUTPUT_DIR
+
+echo "[+] Starting full network scan on $TARGET..."
+echo "[+] Output will be saved to $OUTPUT_DIR"
+
+nmap -sS -sV -O -p- -T4 $TARGET \
+-oN $OUTPUT_DIR/scan_$DATE.txt
+
+echo "[+] Scan complete."
+echo "[+] Results saved to $OUTPUT_DIR/scan_$DATE.txt"
